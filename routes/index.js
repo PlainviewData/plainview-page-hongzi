@@ -33,9 +33,12 @@ router.get('/a/:archiveId', function(req, res){
 	}
 	if (!utils.checkValidId(req.params.archiveId)) { res.send("Invalid id"); }
 	pv.findById(req.params.archiveId)
-	.then(function(archive){
-		console.log(archive);
-		res.render("url", {archive: archive, article: article});
+	.then(function(result){
+		console.log(result);
+		res.render("url", {archive: result.archive, article: article}, function(err, html){
+	    console.log(html);
+	    res.send(html);
+		});
 	}).catch(function(err){
 		res.render('archiveNotFound');
 	});
