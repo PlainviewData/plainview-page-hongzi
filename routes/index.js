@@ -35,10 +35,7 @@ router.get('/a/:archiveId', function(req, res){
 	pv.findById(req.params.archiveId)
 	.then(function(result){
 		console.log(result);
-		res.render("url", {archive: result.archive, article: article}, function(err, html){
-	    console.log(html);
-	    res.send(html);
-		});
+		res.render("url", {archive: result.archive, article: article});
 	}).catch(function(err){
 		res.render('archiveNotFound');
 	});
